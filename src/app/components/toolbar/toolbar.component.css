@@ -1,0 +1,17 @@
+/* .example-spacer {
+  flex: 1 1 auto;
+}
+mat-toolbar {
+    border-radius: 10px;
+    margin-left: calc(2vh);
+    margin-right: calc(2vh);
+    background-color: #2D4356;
+    color: #FFFFFF;
+    height: calc(8vh);
+    width: calc(98vw);
+} */
+.navbar{
+    height: calc(15vh);
+    border-radius: 10px;
+    /* margin: calc(2vh); */
+}
