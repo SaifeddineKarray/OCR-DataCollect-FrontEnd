@@ -2,6 +2,12 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-body {
+/* body {
     background-color: lightgray;
+  } */
+  body {
+    background-image: url("./assets/images/kiwihug-MS9Tnh3if1o-unsplash.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
   }
