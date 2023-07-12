@@ -1,44 +1,74 @@
-<!-- <div>
-  <mat-toolbar>
-    <button
-      mat-icon-button
-      class="example-icon"
-      aria-label="Example icon-button with menu icon"
+<nav class="navbar navbar-expand-lg py-5 navbar-dark mat-elevation-z4" id="nav">
+  <div class="container-fluid">
+    <a
+      class="navbar-brand"
+      style="
+        padding-left: 7%;
+        font-family: 'Dancing Script', cursive;
+        font-size: xx-large;
+      "
+      href="/"
+      >OCR Data Collection</a
     >
-      <mat-icon>menu</mat-icon>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
     </button>
-    <span>OCR Data Collection</span>
-    <span class="example-spacer"></span>
-  </mat-toolbar>
-</div> -->
-<nav class="navbar navbar-expand-lg py-5 navbar-dark mat-elevation-z4"  style="background-color: #2D4356;" >
-    <div class="container-fluid" >
-      <a class="navbar-brand" style="padding-left: 7%; font-family: 'Dancing Script', cursive; font-size: xx-large;" href="/">OCR Data Collection</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent" >
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="padding-right: 7%;padding-left: 7%;" >
-            <li class="nav-item" >
-              <a class="nav-link active" aria-current="page" href="/" >Home</a>
-            </li>
-            <!-- <li class="nav-item">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul
+        class="navbar-nav ms-auto mb-2 mb-lg-0"
+        style="padding-right: 7%; padding-left: 7%"
+      >
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/" >HOME</a>
+        </li>
+        <!-- <li class="nav-item">
               <a class="nav-link" href="/providelableddata">Link</a>
             </li> -->
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Actions
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="/providelableddata">Provide Labled Data</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="/labelprovideddata">Label Provided Data</a></li>
-              </ul>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            
+          >
+            ACTIONS
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item" href="/providelableddata"
+                >Provide Labled Data</a
+              >
             </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item" href="/labelprovideddata"
+                >Label Provided Data</a
+              >
             </li>
           </ul>
-      </div>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link disabled"
+            href="#"
+            tabindex="-1"
+            aria-disabled="true"
+            >DISABLED</a
+          >
+        </li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
