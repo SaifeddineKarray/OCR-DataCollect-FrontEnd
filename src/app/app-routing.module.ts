@@ -6,15 +6,17 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { LpdPageComponent } from './lpd-page/lpd-page.component';
 import { PldPageComponent } from './pld-page/pld-page.component';
-
+import { AuthGuard } from './shared/guard/auth.guard';
 const routes: Routes = [
   {
     path:'',
-    component: HomePageComponent
+    component: HomePageComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:'providelableddata',
-    component:PldPageComponent
+    component:PldPageComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:'login',
@@ -26,7 +28,8 @@ const routes: Routes = [
   },
   {
     path:'labelprovideddata',
-    component:LpdPageComponent
+    component:LpdPageComponent,
+    canActivate: [AuthGuard]
   },
 ];  
 

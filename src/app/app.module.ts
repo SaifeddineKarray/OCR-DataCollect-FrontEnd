@@ -12,7 +12,13 @@ import { PldPageComponent } from './pld-page/pld-page.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { LpdPageComponent } from './lpd-page/lpd-page.component';
-
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { environment } from '../environments/environment';
+import { AuthService } from "./shared/services/auth.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,8 +36,13 @@ import { LpdPageComponent } from './lpd-page/lpd-page.component';
     ToolbarComponent,
     SideNavComponent,
     MatIconModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
