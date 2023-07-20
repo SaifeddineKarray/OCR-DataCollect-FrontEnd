@@ -11,7 +11,7 @@
               <div class="col-md-6 col-lg-7 d-flex align-items-center">
                 <div class="card-body p-4 p-lg-5 text-black">
   
-                  <form>
+                  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   
                     <div class="d-flex align-items-center mb-3 pb-1">
                       <mat-icon style="padding-right: 10%;">login</mat-icon>
@@ -21,24 +21,31 @@
                     <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account !</h5>
   
                     <div class="form-outline mb-4">
-                      <input type="email" id="form2Example17" class="form-control form-control-lg" #userEmail required/>
-                      <label class="form-label" for="form2Example17">Email</label>
+                      <label class="form-label" for="form2Example17">Username</label>
+                      <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" />
+                      <div *ngIf="submitted && f['username'].errors" class="invalid-feedback"></div>
+                      <!-- <div *ngIf="f['username']?.errors?.required">Username is required</div> -->
                     </div>
   
                     <div class="form-outline mb-4">
-                      <input type="password" id="form2Example27" class="form-control form-control-lg" #userPassword required />
                       <label class="form-label" for="form2Example27">Password</label>
+                      <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+                      <div *ngIf="submitted && f['password'].errors" class="invalid-feedback"></div>
+                        <!-- <div *ngIf="f['password']errors['required']">Password is required</div> -->
                     </div>
-                    <div class="text-danger" *ngIf="authService.errorMessage">{{ authService.errorMessage }}</div>
-  
+
                     <div class="d-grid gap-2" style="padding-bottom: 3%;" >
-                        <button type="button" class="btn btn-outline-secondary" (click)="authService.SignIn(userEmail.value, userPassword.value)">Login</button>
-                        </div>
+                          <button [disabled]="loading" class="btn btn-outline-secondary">
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+                            Login
+                        </button>
+                        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+                    </div>
   
                     <!-- <a class="small text-muted" href="#!">Forgot password?</a> -->
                     <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="/register"
                         style="color: #393f81;">Register here</a></p>
-                  </form>
+                    </form>
   
                 </div>
               </div>

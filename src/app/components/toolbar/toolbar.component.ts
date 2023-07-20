@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import { AuthService } from "../../shared/services/auth.service";
+import { AuthenticationService } from "../../shared/services/auth.service";
+import { User } from 'src/app/shared/services/user';
+import { Role } from 'src/app/shared/services/role';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 @Component({
@@ -13,11 +15,19 @@ import { CommonModule } from '@angular/common';
   imports: [MatToolbarModule, MatButtonModule, MatIconModule, CommonModule],
 })
 export class ToolbarComponent implements OnInit{
-  // userRole!: string | null;
-  isAdminUser: boolean = false;
-  constructor(
-    public authService: AuthService  ,
-  ){}
+  user?: User | null;
+
+    constructor(private authenticationService: AuthenticationService) {
+        this.authenticationService.user.subscribe(x => this.user = x);
+    }
+
+    get isAdmin() {
+        return this.user?.role === Role.Admin;
+    }
+
+    logout() {
+        this.authenticationService.logout();
+    }
   ngOnInit() {
     // this.authService.getUserRole().subscribe((role) => {
     //   this.userRole = role;

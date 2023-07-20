@@ -18,7 +18,7 @@
       href="/"
       >OCR Data Collection</a
     >
-    <button
+    <button *ngIf="user"
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
@@ -29,7 +29,7 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="user">
       <ul
         class="navbar-nav ms-auto mb-2 mb-lg-0"
         style="padding-right: 7%; padding-left: 7%"
@@ -67,12 +67,16 @@
           </ul>
         </li>
         <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="admin" *ngIf="isAdmin" >Admin Page</a>
+        </li>
+        
+        <li class="nav-item">
           <a
-            class="nav-link active"
-            href=""
+            class="btn btn-link nav-item nav-link"
+        
             tabindex="-1"
             aria-disabled="true"
-            (click)="authService.SignOut()"
+            (click)="logout()"
             >Logout</a>
         </li>
       </ul>

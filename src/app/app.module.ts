@@ -10,13 +10,13 @@ import { PldPageComponent } from './pld-page/pld-page.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { LpdPageComponent } from './lpd-page/lpd-page.component';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from '../environments/environment';
-import { AuthService } from "./shared/services/auth.service";
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { fakeBackendProvider } from './shared/guard/fake-backend';
+import { JwtInterceptor } from './shared/guard/jwt.interceptor';
+import { ErrorInterceptor } from './shared/guard/error.interceptor';
+import { AdminComponent } from './admin-page/admin-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +25,7 @@ import { AuthService } from "./shared/services/auth.service";
     LandingPageComponent,
     RegisterPageComponent,
     LpdPageComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,13 +33,16 @@ import { AuthService } from "./shared/services/auth.service";
     BrowserAnimationsModule,
     ToolbarComponent,
     MatIconModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
-    AngularFirestoreModule,
-    AngularFireStorageModule,
-    AngularFireDatabaseModule,
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
-  providers: [AuthService],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+    // provider used to create fake backend
+    fakeBackendProvider
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
