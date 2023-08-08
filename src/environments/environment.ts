@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:4000'
+  apiUrl: 'https://localhost:7051',
+  dotnetApiUrl: 'https://localhost:7051',
 };
