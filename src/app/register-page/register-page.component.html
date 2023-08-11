@@ -14,8 +14,9 @@
               
               <div class="col-md-6 col-lg-7 d-flex align-items-center">
                 <div class="card-body p-4 p-lg-5 text-black">
+                  
+                  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   
-                  <form>
   
                     <div class="d-flex align-items-center mb-3 pb-1">
                       <!-- <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i> -->
@@ -30,29 +31,74 @@
                         <label class="form-label" for="form2Example17">Username</label>
                       </div> -->
                       <div class="form-outline mb-4">
-                        <input type="email" id="form2Example17" class="form-control form-control-lg" #userEmail required />
-                        <label class="form-label" for="form2Example17">Email</label>
+                        <input 
+                        type="text" 
+                        id="form2Example1" 
+                        formControlName="firstname" 
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f['firstname'].errors }"
+                        />
+                        <label class="form-label" for="form2Example1">First Name</label>
                       </div>
 
+                      <div class="form-outline mb-4">
+                        <input 
+                        type="text" 
+                        id="form2Example2"
+                        formControlName="lastname" 
+                        class="form-control" 
+                        [ngClass]="{ 'is-invalid': submitted && f['lastname'].errors }" 
+                        />
+                        <label class="form-label" for="form2Example2">Last Name</label>
+                      </div>
 
-                    <!-- <div class="form-outline mb-4">
-                      <input type="email" id="form2Example17" class="form-control form-control-lg" />
-                      <label class="form-label" for="form2Example17">Email address</label>
-                    </div> -->
+                      <div class="form-outline mb-4">
+                        <input 
+                        type="text" 
+                        id="form2Example3" 
+                        formControlName="username" 
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f['username'].errors }"
+                        />
+                        <label class="form-label" for="form2Example3">Username</label>
+                      </div>
   
-                    <div class="form-outline mb-4">
-                      <input type="password" id="form2Example27" class="form-control form-control-lg" #userPwd required />
-                      <label class="form-label" for="form2Example27">Password</label>
-                    </div>
+                      <div class="form-outline mb-4">
+                        <input 
+                        type="password" 
+                        id="form2Example4" 
+                        formControlName="password" 
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
+                        />
+                        <label class="form-label" for="form2Example4">Password</label>
+                      </div>
+                      <div class="d-grid gap-2" style="padding-bottom: 3%;" >
+                        <button [disabled]="loading" class="btn btn-outline-secondary">
+                          <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+                          Submit
+                      </button>
+                      <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+                      </div>
+                      <!-- <div class="text-center">
+                        <button
+                        type="submit"
+                        class="btn btn-secondary mat-elevation-z4"
+                        style="align-self: center"
+                        style="margin: 2%"
+                        >
+                        Submit
+                      </button>
+                      </div> -->
                     <!-- <div class="text-danger" *ngIf="authService.errorMessage">{{ authService.errorMessage }}</div> -->
                     <!-- <div class="form-outline mb-4">
                         <input type="password" id="form2Example27" class="form-control form-control-lg" />
                         <label class="form-label" for="form2Example27">Repeat Password</label>
                       </div> -->
                     
-                    <div class="d-grid gap-2" style="padding-bottom: 3%;" >
-                    <!-- <button type="button" class="btn btn-outline-secondary" (click)="authService.SignUp(userEmail.value, userPwd.value)">Register</button> -->
-                    </div>
+                    <!-- <div class="d-grid gap-2" style="padding-bottom: 3%;" >
+                    <button type="button" class="btn btn-outline-secondary" (click)="authService.SignUp(userEmail.value, userPwd.value)">Register</button>
+                    </div> -->
 
   
                     <p class="mb-1 pb-lg-2" style="color: #393f81;">Already registered? <a href="/login"

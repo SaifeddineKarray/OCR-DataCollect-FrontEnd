@@ -6,11 +6,13 @@ import { map } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
 import { User } from './user';
+import { registerattempt } from 'src/app/models/data/registerattempt.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
     private userSubject: BehaviorSubject<User | null>;
     public user: Observable<User | null>;
+    webAPIUrl: string = environment.dotnetApiUrl;
 
     constructor(
         private router: Router,
@@ -24,9 +26,16 @@ export class AuthenticationService {
         return this.userSubject.value;
     }
 
+    register(newuser: registerattempt) {
+        return this.http.post<registerattempt>(`${environment.apiUrl}/users`, newuser);
+    }
+
     login(username: string, password: string) {
         return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { username, password })
             .pipe(map(user => {
+                if (user.errorMessage){
+                    throw new Error(user.errorMessage);
+                }
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 localStorage.setItem('user', JSON.stringify(user));
                 this.userSubject.next(user);

@@ -16,4 +16,8 @@ export class DataService {
   getAllEntries(): Observable<dataentry[]> {
     return this.http.get<dataentry[]>(this.webAPIUrl + '/api/Data')
   }
+
+  addDataEntry(newdataentry: dataentry): Observable<dataentry>{
+    return this.http.post<dataentry>(this.webAPIUrl + '/api/Data', newdataentry)
+  }
 }

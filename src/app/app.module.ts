@@ -16,7 +16,7 @@ import { fakeBackendProvider } from './shared/guard/fake-backend';
 import { JwtInterceptor } from './shared/guard/jwt.interceptor';
 import { ErrorInterceptor } from './shared/guard/error.interceptor';
 import { AdminComponent } from './admin-page/admin-page.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -37,7 +37,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     HttpClientModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

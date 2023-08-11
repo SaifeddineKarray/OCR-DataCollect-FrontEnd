@@ -15,4 +15,5 @@ export class UserService {
     getById(id: number) {
         return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
     }
+
 }
