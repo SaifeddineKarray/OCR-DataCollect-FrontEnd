@@ -5,19 +5,25 @@ import { dataentry } from '../models/data/dataentry.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
-
   webAPIUrl: string = environment.dotnetApiUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAllEntries(): Observable<dataentry[]> {
-    return this.http.get<dataentry[]>(this.webAPIUrl + '/api/Data')
+    return this.http.get<dataentry[]>(this.webAPIUrl + '/api/Data');
   }
 
-  addDataEntry(newdataentry: dataentry): Observable<dataentry>{
-    return this.http.post<dataentry>(this.webAPIUrl + '/api/Data', newdataentry)
+  uploadImage(formData: FormData): Observable<any> {
+    return this.http.post(this.webAPIUrl + '/api/Data/upload-image', formData);
+  }
+
+  addDataEntry(newdataentry: dataentry): Observable<dataentry> {
+    return this.http.post<dataentry>(
+      this.webAPIUrl + '/api/Data',
+      newdataentry
+    );
   }
 }
