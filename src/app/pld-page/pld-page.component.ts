@@ -66,6 +66,7 @@ export class PldPageComponent implements OnInit{
         .subscribe({
         next: (newdataentry) => {
           console.log(newdataentry);
+          this.uploadForm.reset();
           }
         });
       }
