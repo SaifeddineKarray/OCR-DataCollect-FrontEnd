@@ -26,4 +26,16 @@ export class DataService {
       newdataentry
     );
   }
+
+  extractText(formData: FormData): Observable<any> {
+    return this.http.post(this.webAPIUrl + '/api/Data/extract-text', formData);
+  }
+
+  updateEntry(id: string, newdataentry: dataentry){
+    return this.http.put(this.webAPIUrl + `/api/Data/${id}`, newdataentry);
+  }
+
+  deleteByID(id: string){
+    return this.http.delete(this.webAPIUrl + `/api/Data/${id}`);
+  }
 }

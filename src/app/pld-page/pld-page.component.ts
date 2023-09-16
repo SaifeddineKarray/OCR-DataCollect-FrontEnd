@@ -9,11 +9,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./pld-page.component.css']
 })
 export class PldPageComponent implements OnInit{
-  // imageURL: string = '';
   uploadForm: FormGroup;
   submitted = false;
   error = '';
-  array: Blob[] = [];
   newdataentry: dataentry = {
     id: '',
     imageurl: 'test',
@@ -57,7 +55,6 @@ export class PldPageComponent implements OnInit{
       next: (imageResponse: any) => {
         // Use the returned image URL or path in the newdataentry
         this.newdataentry.imageurl = imageResponse.imageUrl; // Replace 'imageUrl' with the actual property name
-
         this.newdataentry.language = this.f['language'].value;
         this.newdataentry.score = this.f['score'].value;
         this.newdataentry.text = this.f['text'].value;
@@ -66,6 +63,9 @@ export class PldPageComponent implements OnInit{
         .subscribe({
         next: (newdataentry) => {
           console.log(newdataentry);
+          this.dataService.extractText(formData).subscribe({
+            next: (response) => {console.log(response)}
+          });
           this.uploadForm.reset();
           }
         });

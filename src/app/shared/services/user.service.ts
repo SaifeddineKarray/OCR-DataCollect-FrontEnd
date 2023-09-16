@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParamsOptions } from '@angular/common/http';
 
 import { environment } from '../../../environments/environment';
 import { User } from './user';
@@ -12,8 +12,15 @@ export class UserService {
         return this.http.get<User[]>(`${environment.apiUrl}/users`);
     }
 
-    getById(id: number) {
+    getById(id: string) {
         return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
     }
 
+    updateUser(user: User) {
+        return this.http.put(`${environment.apiUrl}/users/UpdateUser`, user)
+      }
+     
+    deleteUserById(id:string){
+        return this.http.delete(`${environment.apiUrl}/users/${id}`);
+    }
 }

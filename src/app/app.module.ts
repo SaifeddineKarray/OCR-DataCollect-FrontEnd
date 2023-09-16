@@ -17,6 +17,8 @@ import { JwtInterceptor } from './shared/guard/jwt.interceptor';
 import { ErrorInterceptor } from './shared/guard/error.interceptor';
 import { AdminComponent } from './admin-page/admin-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AgGridModule } from 'ag-grid-angular';
+import { GridModule, PagerModule, EditService, ToolbarService } from '@syncfusion/ej2-angular-grids';
 
 
 @NgModule({
@@ -38,14 +40,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AgGridModule,
+    GridModule,
+    PagerModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
-    // provider used to create fake backend
-    //fakeBackendProvider
+    EditService,
+    ToolbarService
   ],
   bootstrap: [AppComponent],
 })

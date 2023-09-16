@@ -1,6 +1,16 @@
 <div class="container">
   <div class="row">
 
+    <div class="col-12" style="padding-top: 40px;" >
+      <div class="card mat-elevation-z4" style="height: 100%;">
+        <div class="card-body">
+          <p class="card-text">
+            Please upload an image or a file containing textual information, then specify the language of the text in the file, input said text and finally an estimated score of the accuracy of the extracted test.
+          </p>
+        </div>
+      </div>
+    </div>
+
     <form [formGroup]="uploadForm" (ngSubmit)="addEntry()">
 
       <div class="col-12" style="padding-top: 40px">

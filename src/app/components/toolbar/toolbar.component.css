@@ -17,3 +17,16 @@
   color: rgba(0, 0, 0);
   /* text-shadow: 0px  1px rgba(0, 0, 0, 0.3); */
 }
+.dropdown-menu {
+  /* background-image: url(../../../assets/images/kiwihug-MS9Tnh3if1o-unsplash.jpg); */
+  background-color: rgba(211, 205, 205,0.9);
+  margin: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 500;
+  /* font-family: 'Dancing Script'; */
+  /* font-size: x-large; */
+  color: rgba(0, 0, 0);
+  /* text-shadow: 0px  1px rgba(0, 0, 0, 0.3); */
+}

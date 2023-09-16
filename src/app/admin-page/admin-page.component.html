@@ -1,11 +1,98 @@
-<div class="card mt-4">
-    <h4 class="card-header">Admin</h4>
-    <div class="card-body">
-        <p>This page can be accessed <u>only by administrators</u>.</p>
-        <p class="mb-1">All users from secure (admin only) api end point:</p>
-        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
-        <ul *ngIf="users">
-            <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
-        </ul>
+<div class="container">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center align-items-center" style="padding-top: 20px;">
+            <div class="card mat-elevation-z4">
+                <div class="card-body">
+                    <p class="card-text" style="font-size: 22px; font-family: 'Dancing Script', cursive;">
+                        Users Grid
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<div class="container" style="padding-top: 2%; ">
+    
+    <ejs-grid #grid class="mat-elevation-z4" [dataSource] = users [toolbar] = toolbarOptions (toolbarClick)= "clickHandler($event)" (rowSelected)='rowSelected($event)' [editSettings] = editOptions >
+        <e-columns>
+        <e-column field='username' headerText='Username' textAlign='Center' format='C2' width=90></e-column>
+        <e-column field='firstName' headerText='First Name' textAlign='Center' width=90></e-column>
+        <e-column field='lastName' headerText='Last Name'  textAlign='Center' width=90></e-column>
+        <e-column field='role' headerText='Role' textAlign='Center' editType="dropdownedit" width=90></e-column>
+        </e-columns>
+    </ejs-grid>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center align-items-center" style="padding-top: 40px;">
+            <div class="card mat-elevation-z4">
+                <div class="card-body">
+                    <p class="card-text" style="font-size: 22px; font-family: 'Dancing Script', cursive;">
+                        Data Grid
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="padding-top: 2%; padding-bottom: 2%;">
+    <ejs-grid #grid1 class="mat-elevation-z4" [dataSource] = dataentries [toolbar] = toolbarOptions1 (toolbarClick)= "clickHandler1($event)" (rowSelected)='rowSelected1($event)' [editSettings] = editOptions >
+        <e-columns>
+        <e-column field='imageURL' headerText='Image PATH' textAlign='Center' format='C2' width=90></e-column>
+        <e-column field='language' headerText='Language' textAlign='Center' width=90></e-column>
+        <e-column field='score' headerText='Accuracy Score'  textAlign='Center' width=90></e-column>
+        <e-column field='text' headerText='Text' textAlign='Center'  width=90></e-column>
+        <e-column field='' headerText='Added By' textAlign='Center'  width=90></e-column>
+        </e-columns>
+    </ejs-grid>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container" style="padding-top: 2%; padding-bottom: 2%;">
+        <div class="card mt-4">
+            <h4 class="card-header">Admin</h4>
+            <div class="card-body">
+                <p>This page can be accessed <u>only by administrators</u>.</p>
+                <p class="mb-1">All users from secure (admin only) api end point:</p>
+                <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+                <ul *ngIf="users">
+                    <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
+                </ul>
+        </div>
+    <table class="table" *ngIf="users">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Role</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of users, let i = index">
+            <th scope="row">{{i}}</th>
+            <td>{{user.username}}</td>
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.role}}</td>
+            <td>
+                <button class="btn btn-primary m-2" (click)="editItem(user)">Edit</button>
+                <button class="btn btn-primary" (click)="deleteItem(user)">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div> -->

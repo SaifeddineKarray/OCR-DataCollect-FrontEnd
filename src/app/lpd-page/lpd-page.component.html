@@ -1,51 +1,119 @@
-<div class="container">
+<div *ngIf="!display" class="container">
+
   <div class="row">
-    <div class="col-12" style="padding-top: 40px">
-        <div class="text-center">
-            <button
-              type="button"
-              class="btn btn-secondary mat-elevation-z4"
-              style="align-self: center"
-              style="margin: 2%"
-            >
-              Generate Image
-            </button>
-          </div>
 
-      <div class="input-group mb-3 mat-elevation-z4" style="margin-top: 3%">
-        <span class="input-group-text">Language</span>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="What language is the text in the image in"
-        />
-      </div>
-
-      <div class="input-group mb-3 mat-elevation-z4">
-        <span class="input-group-text">Confidence Score</span>
-        <input
-        type="number"
-        class="form-control"
-        />
-      </div>
-      
-      <div class="input-group mat-elevation-z4">
-        <span class="input-group-text">Text in uploaded image</span>
-        <textarea
-          class="form-control"
-          placeholder="Please input the text in the picture"
-        ></textarea>
-      </div>
-      <div class="text-center">
-        <button
-          type="submit"
-          class="btn btn-secondary mat-elevation-z4"
-          style="align-self: center"
-          style="margin: 2%"
-        >
-          Submit
-        </button>
+    <div class="col-12" style="padding-top: 40px;" >
+      <div class="card mat-elevation-z4" style="height: 100%;">
+        <div class="card-body">
+          <p class="card-text">
+            Please upload an image containing text. Our Optical Character Recognition (OCR) model will attempt to extract the text from the image. You can then assess its accuracy, make corrections as needed, and provide additional helpful information before submitting the new data entry.
+          </p>
+        </div>
       </div>
     </div>
+
+    <form [formGroup]="newForm" (ngSubmit)="imagesubmitted()">
+
+      <div class="col-12" style="padding-top: 40px">
+
+        <div class="form-group mb-3 mat-elevation-z4">
+            <input 
+                formControlName="file"
+                id="file" 
+                type="file" 
+                class="form-control"
+                (change)="onFileChange($event)">
+            <div *ngIf="f['file'].touched && f['file'].invalid" class="alert alert-danger">
+                <div *ngIf="f['file'].errors && f['file'].errors['required']">File is required.</div>
+            </div>
+        </div>
+      
+        <div class="text-center">
+          <button
+          type="submit"
+          class="btn btn-secondary mat-elevation-z4"
+          [disabled]="newForm.invalid"
+          style="align-self: center"
+          style="margin: 2%"
+          >
+          Submit
+        </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!--******************************************************************************
+                                Data Upload Form
+**********************************************************************************-->
+<div *ngIf="display" class="container text-center" style="padding-top: 40px">
+
+  <div class="row">
+    <div class="col-12">
+      <img [src]="image" alt="ImageNotFound" class="img-fluid" />
+    </div>
+  </div>
+  
+  <div class="row">
+
+    <div class="col-12" style="padding-top: 40px;" >
+      <div class="card mat-elevation-z4" style="height: 100%;">
+        <div class="card-body">
+          <p class="card-text">
+            Please complete the language and confidence score fields. If the model's output is accurate, you can proceed and click 'Submit.' If you notice any inaccuracies, please make the necessary corrections in the respective text field.          
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <form [formGroup]="uploadForm" (ngSubmit)="finalSubmit()">
+
+      <div class="col-12" style="padding-top: 20px">
+
+        <div class="input-group mb-3 mat-elevation-z4" style="margin-top: 3%">
+          <span class="input-group-text">Language</span>
+          <input
+          type="text"
+          placeholder="What language are the image and text in"
+          formControlName="language" 
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && g['language'].errors }"
+          />
+        </div>
+
+        <div class="input-group mb-3 mat-elevation-z4">
+          <span class="input-group-text">Confidence Score</span>
+          <input
+          type="number"
+          formControlName="score" 
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && g['score'].errors }"
+          />
+        </div>
+
+        <div class="input-group mat-elevation-z4">
+          <span class="input-group-text">Text in uploaded image</span>
+          <textarea
+          formControlName="text" 
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && g['text'].errors }"
+          ></textarea>
+        </div>
+      
+        <div class="text-center">
+          <button
+          type="submit"
+          class="btn btn-secondary mat-elevation-z4"
+          [disabled]="uploadForm.invalid"
+          style="align-self: center"
+          style="margin: 2%"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
 </div>
